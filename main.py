@@ -26,9 +26,9 @@ class ContinuousChatPlugin(Star, PluginKVStoreMixin):
 
     def _timeout(self) -> int:
         try:
-            return max(5, int(self.config.get("timeout_seconds", 60)))
+            return max(5, int(self.config.get("timeout_seconds", 15)))
         except (TypeError, ValueError):
-            return 60
+            return 15
 
     async def _is_active(self, group_id: str, user_id: str) -> bool:
         """惰性超时判断：当前时间 > 过期时间戳 则视为不活跃。"""

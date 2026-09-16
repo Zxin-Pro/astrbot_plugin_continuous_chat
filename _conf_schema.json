@@ -7,7 +7,7 @@
   "timeout_seconds": {
     "description": "连续对话超时秒数：用户超过该时间未发言则自动退出，期间每发一条消息都会刷新计时",
     "type": "int",
-    "default": 60,
+    "default": 15,
     "hint": "最小 5 秒"
   },
   "enable_at_wake": {
