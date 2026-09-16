@@ -3,6 +3,12 @@
 本插件遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 格式，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [v1.1.1] - 2026-09-16
+
+### 新增
+
+- metadata 增加 `display_name: 群聊连续对话`，AstrBot 面板插件列表显示中文名
+
 ## [v1.1.0] - 2026-09-16
 
 ### 变更
