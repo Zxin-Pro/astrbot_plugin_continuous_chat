@@ -1,0 +1,28 @@
+{
+  "wake_words": {
+    "description": "唤醒词列表，消息文本包含任意唤醒词即唤醒（忽略大小写）",
+    "type": "list",
+    "default": ["小助手"]
+  },
+  "timeout_seconds": {
+    "description": "连续对话超时秒数：用户超过该时间未发言则自动退出，期间每发一条消息都会刷新计时",
+    "type": "int",
+    "default": 60,
+    "hint": "最小 5 秒"
+  },
+  "enable_at_wake": {
+    "description": "允许通过 @机器人 唤醒",
+    "type": "bool",
+    "default": true
+  },
+  "enable_word_wake": {
+    "description": "允许通过唤醒词唤醒",
+    "type": "bool",
+    "default": true
+  },
+  "whitelist_groups": {
+    "description": "生效群白名单（群 ID 列表），留空表示所有群生效",
+    "type": "list",
+    "default": []
+  }
+}

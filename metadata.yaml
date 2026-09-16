@@ -1,0 +1,5 @@
+name: astrbot_plugin_continuous_chat
+desc: 群聊连续对话插件。用户通过 @机器人 或唤醒词唤醒后，后续每条消息免唤醒直接触发 AI，每发一条消息刷新一次超时计时（滑动窗口），超时自动退出，各用户互不影响。
+version: v1.0.0
+author: Zxin-Pro
+repo: https://github.com/Zxin-Pro/astrbot_plugin_continuous_chat
