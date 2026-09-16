@@ -114,23 +114,5 @@ class ContinuousChatPlugin(Star, PluginKVStoreMixin):
                 )
 
     # ---------- LLM 请求拦截 ----------
-
-    @filter.on_llm_request()
-    async def on_llm_request(self, event: AstrMessageEvent, req):
-        group_id = event.message_obj.group_id
-        # 私聊 / 群 ID 为空：跳过本插件逻辑，正常放行
-        if not group_id:
-            return
-        if not self._group_enabled(group_id):
-            return
-        user_id = event.get_sender_id()
-        if not user_id or str(user_id) == str(event.get_self_id()):
-            return
-
-        gid, uid = str(group_id), str(user_id)
-        if not await self._is_active(gid, uid):
-            # 不活跃：阻止本次 LLM 调用，机器人不回复
-            logger.info(
-                f"[continuous_chat] 拦截未唤醒用户的 LLM 请求 群{gid} 用户{uid}",
-            )
-            event.stop_event()
+    # v1.1.0 起：不做拦截。未唤醒用户保持 AstrBot 原生行为（@/前缀等才回复），
+    # 本插件只负责让活跃用户每句话都触发回复。
