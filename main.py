@@ -89,17 +89,17 @@ class ContinuousChatPlugin(Star, PluginKVStoreMixin):
         else:
             logger.debug(f"[continuous_chat] 用户已超时退出 群{gid} 用户{uid}")
 
-        # 唤醒判定：@机器人 或 命中唤醒词（忽略大小写）
+        # 唤醒判定：@机器人 / 命中唤醒词（忽略大小写）/ 平台侧唤醒（@、引用回复机器人、唤醒前缀）
         at_wake = self.config.get("enable_at_wake", True) and self._at_bot(event)
         word_wake = self.config.get("enable_word_wake", True) and self._hit_wake_word(
             event,
         )
-        if at_wake or word_wake:
+        if at_wake or word_wake or event.is_at_or_wake_command:
             await self._activate(gid, uid)
             logger.info(
                 f"[continuous_chat] 用户唤醒 "
-                f"({'@' if at_wake else '唤醒词'}) 群{gid} 用户{uid}，"
-                f"连续对话保持 {self._timeout()}s",
+                f"({'@' if at_wake else '唤醒词' if word_wake else '平台唤醒'}) "
+                f"群{gid} 用户{uid}，连续对话保持 {self._timeout()}s",
             )
             # 唤醒消息本身已满足 is_at_or_wake_command，直接放行
             return
